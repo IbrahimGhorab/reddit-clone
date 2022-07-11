@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from "react-redux";
+import Login from "./page/Login";
+import Home from "./page/Home";
+import { ThemeProvider } from "./context/ThemeContext";
 
 function App() {
+  const user = useSelector((state) => state.userReducer);
+  const theme = useSelector((state) => state.themeReducer);
+
+  console.log(user);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      <div
+        className="text-center"
+        style={{
+          height: user ? "100%" : "100vh",
+          backgroundColor: theme ? "#4E4E50" : "#E5E6EA",
+        }}
+      >
+        {user ? <Home /> : <Login user={user} />}
+      </div>
+    </ThemeProvider>
   );
 }
 
