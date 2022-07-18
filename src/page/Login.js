@@ -80,7 +80,7 @@ const Login = ({ user }) => {
           )}
         </div>
       </Form>
-      <div>
+      <div className="text-center">
         {theme ? (
           <Button
             className="mt-3"

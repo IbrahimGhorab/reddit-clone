@@ -19,7 +19,7 @@ const Blogform = () => {
   const setPost = async (blog) => {
     try {
       const post = await axios.post("https://api.tawwr.com/posts", blog);
-      dispatch(addPost(post));      
+      dispatch(addPost(post));
     } catch (e) {
       console.log(e);
     }
@@ -49,8 +49,8 @@ const Blogform = () => {
   });
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
-        Add Blog
+      <Button variant={theme ? "light" : "dark"} onClick={handleShow}>
+        <i class="fa fa-plus-square" aria-hidden="true"></i>
       </Button>
 
       <Modal
@@ -61,14 +61,14 @@ const Blogform = () => {
       >
         <Modal.Header
           style={{
-            backgroundColor: theme ? "black" : "white",
+            backgroundColor: theme ? "#4E4E50" : "white",
             color: theme ? "white" : "black",
           }}
           closeButton
         >
           <Modal.Title
             style={{
-              backgroundColor: theme ? "black" : "white",
+              backgroundColor: theme ? "#4E4E50" : "white",
               color: theme ? "white" : "black",
             }}
           >
@@ -77,14 +77,14 @@ const Blogform = () => {
         </Modal.Header>
         <Modal.Body
           style={{
-            backgroundColor: theme ? "black" : "white",
+            backgroundColor: theme ? "#4E4E50" : "white",
             color: theme ? "white" : "black",
           }}
         >
           <Form
             onSubmit={formik.handleSubmit}
             style={{
-              backgroundColor: theme ? "black" : "white",
+              backgroundColor: theme ? "#4E4E50" : "white",
               color: theme ? "white" : "black",
             }}
           >
@@ -131,7 +131,7 @@ const Blogform = () => {
         </Modal.Body>
         <Modal.Footer
           style={{
-            backgroundColor: theme ? "black" : "white",
+            backgroundColor: theme ? "#4E4E50" : "white",
             color: theme ? "white" : "black",
           }}
         >

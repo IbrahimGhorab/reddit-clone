@@ -6,6 +6,7 @@ import Blog from "./Blog";
 
 const Bloglist = () => {
   const postList = useSelector((state) => state.postReducer);
+  console.log(postList);
   const dispatch = useDispatch();
 
   const getData = async () => {
@@ -18,11 +19,10 @@ const Bloglist = () => {
   }, [postList]);
 
   return (
-    <div>
-      {postList.map((post,idx) => (
+    <div className="mt-5">
+      {postList.map((post, idx) => (
         <Blog key={idx} post={post} getData={getData} />
       ))}
-      )
     </div>
   );
 };

@@ -1,21 +1,13 @@
 import React, { useState } from "react";
-import { Card, Button, Container, Modal, Form } from "react-bootstrap";
+import { Card, Button, Container, Modal, Form, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
-// import ThemeContext from "../context/ThemeContext";
-// import { useContext } from "react";
 import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import axios from "axios";
 
-const Blog = ({ post, getData }) => {
-  // const { theme } = useContext(ThemeContext);
+const Blog = ({ post }) => {
   const theme = useSelector((prvState) => prvState.themeReducer);
-  // console.log("theme now: ", theme);
-  const themeStyle = {
-    backgorundColor: theme ? "black" : "white",
-    color: theme ? "white" : "black",
-  };
 
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
@@ -24,7 +16,6 @@ const Blog = ({ post, getData }) => {
   const postComment = async (cmt) => {
     try {
       await axios.post(`https://api.tawwr.com/posts/${post.id}/comment`, cmt);
-      getData();
     } catch (e) {
       console.log(e);
     }
@@ -36,7 +27,6 @@ const Blog = ({ post, getData }) => {
         userId: Math.floor(Math.random() * 10) + 1,
         userVote: 1,
       });
-      getData();
     } catch (e) {
       console.log(e);
     }
@@ -47,7 +37,6 @@ const Blog = ({ post, getData }) => {
         userId: Math.floor(Math.random() * 10) + 1,
         userVote: -1,
       });
-      getData();
     } catch (e) {
       console.log(e);
     }
@@ -66,45 +55,59 @@ const Blog = ({ post, getData }) => {
   return (
     <Container className="mt-3">
       <Card
-        className="text-center"
         bg={theme ? "dark" : ""}
         text={theme ? "white" : ""}
+        style={{ borderRadius: "20px" }}
+        className="p-4"
       >
-        <Card.Header>Blog Author :{post.id}</Card.Header>
-        <Card.Body>
-          <Card.Title>Blog Title: {post.title}</Card.Title>
-          <Card.Text>{post.body}</Card.Text>
-          <div className="d-flex justify-content-between">
-            <div className="d-flex align-items-end mx-2">
-              <Link to={"/post/" + post.id}>
-                <Button variant="success">Show Details...</Button>
-              </Link>
+        <div className="d-flex justify-content-start">
+          <Image
+            src="https://www.w3schools.com/css/img_5terre.jpg"
+            className="mx-3"
+            roundedCircle
+            style={{
+              width: "60px",
+              height: "60px",
+            }}
+          />
+          <div>
+            <p>{post.userId}</p>
+            <p>
+              {moment(post.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")}
+            </p>
+          </div>
+        </div>
+        <Card.Body className="justify-content-start">
+          <Card.Title className=" ">{post.title}</Card.Title>
+          <Card.Text className=" ">{post.body}</Card.Text>
+        </Card.Body>
+        <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between gap-5">
+            <div>
+              <button className="btn btn-light me-2" onClick={upVote}>
+                <i className="fa fa-thumbs-up" aria-hidden="true"></i>
+              </button>
+              <span>{post.upVotesTotal}</span>
             </div>
-            <div className="d-flex justify-content-around">
-              <div>
-                <p>{post.upVotesTotal}</p>
-                <button className="btn-primary" onClick={upVote}>
-                  <i className="fa fa-thumbs-up" aria-hidden="true"></i>
-                </button>
-              </div>
-              <div>
-                <p>{post.downVotesTotal}</p>
-                <button className="btn-info mx-2" onClick={downVote}>
-                  <i className="fa fa-thumbs-o-down" aria-hidden="true"></i>
-                </button>
-              </div>
-              <div>
-                <p>{post.commentsTotal}</p>
-                <button className="btn-warning" onClick={handleShow}>
-                  <i className="fa fa-pencil-square" aria-hidden="true"></i>
-                </button>
-              </div>
+            <div>
+              <button className="btn btn-light me-2" onClick={downVote}>
+                <i className="fa fa-thumbs-o-down" aria-hidden="true"></i>
+              </button>
+              <span>{post.downVotesTotal}</span>
+            </div>
+            <div>
+              <button className="btn btn-light me-2" onClick={handleShow}>
+                <i className="fa fa-pencil-square" aria-hidden="true"></i>
+              </button>
+              <span>{post.commentsTotal}</span>
             </div>
           </div>
-        </Card.Body>
-        <Card.Footer className="text-muted">
-          {moment(post.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")}
-        </Card.Footer>
+          <div className="">
+            <Link to={"/post/" + post.id}>
+              <button className="btn btn-light">Open Post </button>
+            </Link>
+          </div>
+        </div>
       </Card>
       <div>
         <Modal
@@ -115,7 +118,7 @@ const Blog = ({ post, getData }) => {
         >
           <Modal.Header
             style={{
-              backgroundColor: theme ? "black" : "white",
+              backgroundColor: theme ? "#4E4E50" : "white",
               color: theme ? "white" : "black",
             }}
             closeButton
@@ -124,13 +127,13 @@ const Blog = ({ post, getData }) => {
           </Modal.Header>
           <Modal.Body
             style={{
-              backgroundColor: theme ? "black" : "white",
+              backgroundColor: theme ? "#4E4E50" : "white",
               color: theme ? "white" : "black",
             }}
           >
             <Form
               style={{
-                backgroundColor: theme ? "black" : "white",
+                backgroundColor: theme ? "#4E4E50" : "white",
                 color: theme ? "white" : "black",
               }}
             >
@@ -157,7 +160,7 @@ const Blog = ({ post, getData }) => {
           </Modal.Body>
           <Modal.Footer
             style={{
-              backgroundColor: theme ? "black" : "white",
+              backgroundColor: theme ? "#4E4E50" : "white",
               color: theme ? "white" : "black",
             }}
           >
