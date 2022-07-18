@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { darkTheme, lightTheme } from "../redux/actions/themeAction";
 import { useSelector, useDispatch } from "react-redux";
 import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
+import { MdSwitchAccount } from "react-icons/md";
 import Blogform from "./Blogform";
 
 const Nav = () => {
@@ -52,27 +53,15 @@ const Nav = () => {
             />
           </form>
           <div className="d-flex gap-2">
-            <Button size="sm" variant={theme ? "light" : "dark"}>
-              <i class="fa fa-user-circle" aria-hidden="true"></i>
-            </Button>
+            <MdSwitchAccount size="2.5em" color={theme ? "white" : "black"} />
             <Blogform />
           </div>
         </Container>
         <div className="pt-2 d-flex gap-2">
           <div className="">
             {theme ? (
-              // <Button
-              //   size="sm"
-              //   variant="warning"
-              //   onClick={() => {
-              //     dispatch(lightTheme());
-              //   }}
-              //   style={{ borderRadius: "10px" }}
-              // >
-              //   <i class="fa fa-sun-o" aria-hidden="true"></i>
-              // </Button>
               <BsFillSunFill
-              color="white"
+                color="white"
                 onClick={() => {
                   dispatch(lightTheme());
                 }}
@@ -83,15 +72,6 @@ const Nav = () => {
                   dispatch(darkTheme());
                 }}
               />
-              // <Button
-              //   size="sm"
-              //   variant="dark"
-              //   onClick={() => {
-              //     dispatch(darkTheme());
-              //   }}
-              //   style={{ borderRadius: "10px" }}
-              // >
-              // </Button>
             )}
           </div>
           <p
