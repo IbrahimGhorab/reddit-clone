@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Card, Button, Container, Modal, Form, Image } from "react-bootstrap";
+import { AiFillLike, AiFillDislike, AiOutlineComment } from "react-icons/ai";
+import { FaCommentDots } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { useSelector } from "react-redux";
@@ -58,7 +60,7 @@ const Blog = ({ post }) => {
         bg={theme ? "dark" : ""}
         text={theme ? "white" : ""}
         style={{ borderRadius: "20px" }}
-        className="p-4"
+        className="p-4 w-75"
       >
         <div className="d-flex justify-content-start">
           <Image
@@ -84,21 +86,43 @@ const Blog = ({ post }) => {
         <div className="d-flex justify-content-between">
           <div className="d-flex justify-content-between gap-5">
             <div>
-              <button className="btn btn-light me-2" onClick={upVote}>
+              {/* <button className="btn btn-light me-2" onClick={upVote}>
                 <i className="fa fa-thumbs-up" aria-hidden="true"></i>
-              </button>
+              </button> */}
+              <AiFillLike
+                className="me-1"
+                style={{ cursor: "pointer" }}
+                color={theme ? "white" : "black"}
+                size="2em"
+                onClick={upVote}
+              />
               <span>{post.upVotesTotal}</span>
             </div>
             <div>
-              <button className="btn btn-light me-2" onClick={downVote}>
+              {/* <button className="btn btn-light me-2" onClick={downVote}>
                 <i className="fa fa-thumbs-o-down" aria-hidden="true"></i>
-              </button>
+              </button> */}
+              <AiFillDislike
+                className="me-1"
+                style={{ cursor: "pointer" }}
+                onClick={downVote}
+                size="2em"
+                color={theme ? "white" : "black"}
+              />
               <span>{post.downVotesTotal}</span>
             </div>
             <div>
-              <button className="btn btn-light me-2" onClick={handleShow}>
+              {/* <button className="btn btn-light me-2" onClick={handleShow}>
                 <i className="fa fa-pencil-square" aria-hidden="true"></i>
-              </button>
+              </button> */}
+              <FaCommentDots
+                className="me-1"
+                onClick={handleShow}
+                onMouseOverCapture="add comment"
+                style={{ cursor: "pointer" }}
+                color={theme ? "white" : "black"}
+                size="2em"
+              />
               <span>{post.commentsTotal}</span>
             </div>
           </div>

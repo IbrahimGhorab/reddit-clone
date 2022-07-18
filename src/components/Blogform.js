@@ -52,10 +52,8 @@ const Blogform = () => {
   });
   return (
     <div>
-      {/* <Button variant={theme ? "light" : "dark"} onClick={handleShow}>
-        <i class="fa fa-plus-square" aria-hidden="true"></i>
-      </Button> */}
       <BiAddToQueue
+        style={{ cursor: "pointer" }}
         size="2.5em"
         color={theme ? "white" : "black"}
         onClick={handleShow}

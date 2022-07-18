@@ -53,7 +53,11 @@ const Nav = () => {
             />
           </form>
           <div className="d-flex gap-2">
-            <MdSwitchAccount size="2.5em" color={theme ? "white" : "black"} />
+            <MdSwitchAccount
+              size="2.5em"
+              color={theme ? "white" : "black"}
+              style={{ cursor: "pointer" }}
+            />
             <Blogform />
           </div>
         </Container>
@@ -61,6 +65,7 @@ const Nav = () => {
           <div className="">
             {theme ? (
               <BsFillSunFill
+                style={{ cursor: "pointer" }}
                 color="white"
                 onClick={() => {
                   dispatch(lightTheme());
@@ -68,6 +73,7 @@ const Nav = () => {
               />
             ) : (
               <BsFillMoonStarsFill
+                style={{ cursor: "pointer" }}
                 onClick={() => {
                   dispatch(darkTheme());
                 }}
