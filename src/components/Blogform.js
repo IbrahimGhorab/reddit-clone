@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addPost } from "../redux/actions/postsAction";
 import { Button, Modal, Form } from "react-bootstrap";
-import {BiAddToQueue} from "react-icons/bi";
-import {MdLibraryAdd} from "react-icons/md";
+import { BiAddToQueue } from "react-icons/bi";
+import { MdLibraryAdd } from "react-icons/md";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -55,7 +55,11 @@ const Blogform = () => {
       {/* <Button variant={theme ? "light" : "dark"} onClick={handleShow}>
         <i class="fa fa-plus-square" aria-hidden="true"></i>
       </Button> */}
-      <BiAddToQueue size="2.5em" color={theme ? "white" : "black"}/>
+      <BiAddToQueue
+        size="2.5em"
+        color={theme ? "white" : "black"}
+        onClick={handleShow}
+      />
 
       <Modal
         show={show}
